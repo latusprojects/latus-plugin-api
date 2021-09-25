@@ -1,0 +1,27 @@
+{
+  "name": "latusprojects/latus-plugin-api",
+  "type": "library",
+  "description": "",
+  "authors": [
+    {
+      "name": "Max Latussek",
+      "email": "latusschnecke@gmail.com"
+    }
+  ],
+  "require": {
+    "latusprojects/latus-helpers": "^3.0.1",
+    "latusprojects/latus-permissions": "^0.2.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Latus\\PluginAPI\\": "src/"
+    }
+  },
+  "repositories": {
+    "0": {
+      "type": "composer",
+      "url": "https://latusprojects.repo.repman.io"
+    }
+  },
+  "minimum-stability": "dev"
+}
