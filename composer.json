@@ -13,6 +13,9 @@
     "latusprojects/latus-permissions": "^0.2.7"
   },
   "autoload": {
+    "files": [
+      "src/helpers.php"
+    ],
     "psr-4": {
       "Latus\\PluginAPI\\": "src/"
     }
