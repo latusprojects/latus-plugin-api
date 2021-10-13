@@ -17,6 +17,16 @@
       "Latus\\PluginAPI\\": "src/"
     }
   },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Latus\\PluginAPI\\Providers\\PluginAPIServiceProvider"
+      ],
+      "aliases": {
+        "Latus": "Latus\\PluginAPI\\Facades\\LatusFacade::class"
+      }
+    }
+  },
   "repositories": {
     "0": {
       "type": "composer",
