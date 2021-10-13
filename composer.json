@@ -27,7 +27,7 @@
         "Latus\\PluginAPI\\Providers\\PluginAPIServiceProvider"
       ],
       "aliases": {
-        "Latus": "Latus\\PluginAPI\\Facades\\LatusFacade::class"
+        "Latus": "Latus\\PluginAPI\\Facades\\Latus::class"
       }
     },
     "branch-alias": {
