@@ -3,6 +3,8 @@
 namespace Latus\PluginAPI\Services;
 
 use Illuminate\Support\Collection;
+use Latus\PluginAPI\Events\IncludesCssAssets;
+use Latus\PluginAPI\Events\IncludesJsAssets;
 use Latus\PluginAPI\Repositories\Contracts\AssetRepository;
 
 class AssetService
@@ -35,5 +37,25 @@ class AssetService
     public function getJs(array $tags = null): Collection
     {
         return $this->assetRepository->getJs($tags);
+    }
+
+    public function includeJs(array $tags = null): Collection
+    {
+        if (!defined('JS_ATTACHED')) {
+            IncludesJsAssets::dispatch();
+            define('JS_ATTACHED', true);
+        }
+
+        return $this->getJs($tags);
+    }
+
+    public function includeCss(array $tags = null): Collection
+    {
+        if (!defined('CSS_ATTACHED')) {
+            IncludesCssAssets::dispatch();
+            define('CSS_ATTACHED', true);
+        }
+
+        return $this->getCss($tags);
     }
 }
