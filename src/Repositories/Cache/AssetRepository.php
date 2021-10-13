@@ -67,7 +67,7 @@ class AssetRepository implements AssetRepositoryContract
         $taggedItems = collect();
 
         foreach ($unfilteredItems as $unfilteredItem) {
-            if (!empty(array_intersect($tags, $cachedItem['tags']))) {
+            if (!empty(array_intersect($tags, $unfilteredItem['tags']))) {
                 $taggedItems->add($unfilteredItem);
             }
         }
