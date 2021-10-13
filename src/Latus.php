@@ -2,10 +2,13 @@
 
 namespace Latus\PluginAPI;
 
+use Illuminate\Support\Traits\Macroable;
 use Latus\PluginAPI\Services\AssetService;
 
 class Latus
 {
+    use Macroable;
+
     public function __construct()
     {
     }
