@@ -5,7 +5,7 @@ namespace Latus\PluginAPI\Events;
 use Illuminate\Foundation\Events\Dispatchable;
 use Latus\PluginAPI\Services\AssetService;
 
-class IncludesCssAssets
+class IncludesJsAssets
 {
     use Dispatchable;
 
