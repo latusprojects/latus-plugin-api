@@ -20,7 +20,7 @@ class AssetService
         return $this;
     }
 
-    public function attachJs(string $url, string $place = AssetRepository::PLACE_START, array $tags = null, bool $defer = false, \Closure $shouldShow = null)
+    public function attachJs(string $url, string $place = AssetRepository::PLACE_START, array $tags = null, bool $defer = false, \Closure $shouldShow = null): self
     {
         $this->assetRepository->attachJs($url, $place, $tags, $defer, $shouldShow);
 
