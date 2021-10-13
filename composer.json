@@ -10,7 +10,8 @@
   ],
   "require": {
     "latusprojects/latus-helpers": "^3.0.1",
-    "latusprojects/latus-permissions": "^0.2.7"
+    "latusprojects/latus-permissions": "^0.2.7",
+    "latusprojects/latus-ui": "^0.1.37"
   },
   "autoload": {
     "files": [
