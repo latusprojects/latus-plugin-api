@@ -101,7 +101,7 @@ class AssetRepository implements AssetRepositoryContract
     {
         $this->ensureCacheHasKeyAndAssetType($assetType);
 
-        $cache = Cache::get(self::CACHE_KEY)[$assetType];
+        $cache = Cache::get(self::CACHE_KEY);
 
         $cache[$assetType][$item['url']] = $item;
 
