@@ -22,4 +22,9 @@ class PluginAPIServiceProvider extends ServiceProvider
 
         $this->app->bind(AssetRepositoryContract::class, AssetRepository::class);
     }
+
+    public function boot()
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../../config/latus.php', 'latus');
+    }
 }
