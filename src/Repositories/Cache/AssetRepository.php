@@ -4,11 +4,17 @@ namespace Latus\PluginAPI\Repositories\Cache;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Latus\PluginAPI\Repositories\Cache\Traits\HasCachedItems;
 use Latus\PluginAPI\Repositories\Contracts\AssetRepository as AssetRepositoryContract;
 
 class AssetRepository implements AssetRepositoryContract
 {
-    protected const CACHE_KEY = 'latus-assets';
+    use HasCachedItems;
+
+    protected function getCacheKey(): string
+    {
+        return 'latus-assets';
+    }
 
     public function attachCss(string $url, string $place = self::PLACE_START, array $tags = null, \Closure $shouldShow = null)
     {
@@ -17,11 +23,11 @@ class AssetRepository implements AssetRepositoryContract
             $tags = $tags ?? [];
             $tags[] = 'place.' . $place;
 
-            $this->putItemIntoCache([
+            $this->putItemsIntoCache([$url => [
                 'url' => $url,
                 'place' => $place,
                 'tags' => $tags ?? [],
-            ], 'css');
+            ]], 'css');
         }
     }
 
@@ -36,11 +42,11 @@ class AssetRepository implements AssetRepositoryContract
                 $tags[] = 'defer';
             }
 
-            $this->putItemIntoCache([
+            $this->putItemsIntoCache([$url => [
                 'url' => $url,
                 'place' => $place,
                 'tags' => $tags,
-            ], 'js');
+            ]], 'js');
         }
     }
 
@@ -73,38 +79,5 @@ class AssetRepository implements AssetRepositoryContract
         }
 
         return $taggedItems;
-    }
-
-    protected function ensureCacheHasKeyAndAssetType(string $assetType)
-    {
-        $cache = Cache::get(self::CACHE_KEY);
-
-        if (!$cache) {
-            Cache::put(self::CACHE_KEY, []);
-            $cache = Cache::get(self::CACHE_KEY);
-        }
-
-        if (!isset($cache[$assetType])) {
-            $cache[$assetType] = [];
-            Cache::put(self::CACHE_KEY, $cache);
-        }
-    }
-
-    protected function getCachedItems(string $assetType): Collection
-    {
-        $this->ensureCacheHasKeyAndAssetType($assetType);
-
-        return collect(Cache::get(self::CACHE_KEY)[$assetType]);
-    }
-
-    protected function putItemIntoCache(array $item, string $assetType)
-    {
-        $this->ensureCacheHasKeyAndAssetType($assetType);
-
-        $cache = Cache::get(self::CACHE_KEY);
-
-        $cache[$assetType][$item['url']] = $item;
-
-        Cache::put(self::CACHE_KEY, $cache);
     }
 }
