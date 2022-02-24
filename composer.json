@@ -14,9 +14,6 @@
     "latusprojects/latus-ui": "^0.1.37"
   },
   "autoload": {
-    "files": [
-      "src/helpers.php"
-    ],
     "psr-4": {
       "Latus\\PluginAPI\\": "src/"
     }
