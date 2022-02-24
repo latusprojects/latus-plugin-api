@@ -6,7 +6,7 @@ use Latus\PluginAPI\Services\ExposedDataService;
 
 trait ExposesData
 {
-    public function getExposedDataService()
+    public function getExposedDataService(): ExposedDataService
     {
         return app(ExposedDataService::class);
     }
