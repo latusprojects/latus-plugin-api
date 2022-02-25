@@ -5,6 +5,7 @@ namespace Latus\PluginAPI\Providers;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Latus\Laravel\Http\Middleware\BuildPackageDependencies;
+use Latus\PluginAPI\Events\ExposesData;
 use Latus\PluginAPI\Latus;
 use Latus\PluginAPI\Repositories\Cache\AssetRepository;
 use Latus\PluginAPI\Repositories\Contracts\AssetRepository as AssetRepositoryContract;
@@ -26,6 +27,8 @@ class PluginAPIServiceProvider extends ServiceProvider
         $this->app->bind(AssetRepositoryContract::class, AssetRepository::class);
 
         BuildPackageDependencies::addDependencyClosure(function () {
+            ExposesData::dispatch();
+
             $exposedDataService = app(ExposedDataService::class);
 
             $data = $exposedDataService->getExposed();
